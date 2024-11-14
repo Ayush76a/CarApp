@@ -1,0 +1,28 @@
+import axios from 'axios';
+
+const API = axios.create({ baseURL: 'http://localhost:5001/api' });
+
+API.interceptors.request.use((req) => {
+  if (localStorage.getItem('token')) {
+    req.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
+  }
+  return req;
+});
+
+
+// Authentication
+export const login = (formData) => API.post('/users/login', formData);
+export const signup = (formData) => API.post('/users/signup', formData);
+
+
+// Car Management
+export const getCars = () => API.get('/cars');                   // Get all cars for the logged-in user
+export const addCar = (carData) => API.post('/cars', carData, {
+  headers: {
+    'Content-Type': 'multipart/form-data',
+  },
+});                                                               // Add a new car with multiple image in form
+export const getCar = (id) => API.get(`/cars/${id}`);             // Get a specific car by ID
+export const updateCar = (id, updatedData) => API.put(`/cars/${id}`, updatedData); // Update a car by ID
+export const deleteCar = (id) => API.delete(`/cars/${id}`);       // Delete a car by ID
+export const searchCars = (query) => API.get(`/cars/search?keyword=${query}`); // Search cars by keyword
