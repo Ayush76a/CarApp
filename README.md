@@ -2,6 +2,18 @@
 
 Welcome to the Car Management App 🚗! This app allows users to manage a collection of cars with ease. Users can add, edit, delete, and search cars by title, upload multiple images for each car, and view detailed information about each car in their collection.
 
+
+## Live Link
+[[Link to the deployed app](https://lambent-sunburst-90f601.netlify.app)]
+
+Frontend link : https://lambent-sunburst-90f601.netlify.app
+
+Backend link : https://carapp-backend-czb0.onrender.com
+
+## Testing and Dummy User
+ ### Email : user1@gmail.com
+ ### Password : 123456
+
 ## Features
 
 1. **Add, Edit, and Delete Cars:** Users can add new cars with title, description, tags, and multiple images. Each car can be edited or deleted as needed.
@@ -10,12 +22,6 @@ Welcome to the Car Management App 🚗! This app allows users to manage a collec
 4. **User Authentication:** Secure access for each user with login and signup capabilities.
 5. **Real-Time Updates:** Displays real-time updates to the car details upon editing.
 
-## Live Link
-[[Link to the deployed app](https://lambent-sunburst-90f601.netlify.app)]
-
-Frontend link : https://lambent-sunburst-90f601.netlify.app
-
-Backend link : https://carapp-backend-czb0.onrender.com
 
 ## Getting Started
 
