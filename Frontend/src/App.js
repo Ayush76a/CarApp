@@ -13,6 +13,7 @@ import './styles.css';
 function App() {
   return (
     <Router>
+    <div className="main-container">
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -23,6 +24,7 @@ function App() {
         <Route path="/car/:id" element={<ProductDetail />} />
         <Route path="/add-car" element={<ProductCreation />} />
       </Routes>
+      </div>
     </Router>
   );
 }

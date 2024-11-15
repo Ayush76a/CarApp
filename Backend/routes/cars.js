@@ -70,41 +70,69 @@ router.get('/:id', auth, async (req, res) => {
   }
 });
 
-// Search for cars
+
+// Search for cars by title, filtered by the authenticated user
 router.get('/search', auth, async (req, res) => {
   const { keyword } = req.query;
+
+  if (!keyword || keyword.trim() === '') {
+    return res.status(400).send('Search keyword is required');
+  }
+
   try {
+    console.log("Search keyword:", keyword);
+    console.log("Authenticated user ID:", req.user._id); // Check if user ID is present
+
     const cars = await Car.find({
-      userId: req.user._id,
-      $or: [
-        { title: { $regex: keyword, $options: 'i' } },
-        { description: { $regex: keyword, $options: 'i' } },
-        { tags: { $regex: keyword, $options: 'i' } }
-      ]
+      userId: req.user._id,   // Ensure filtering by the authenticated user's ID
+      title: { $regex: keyword, $options: 'i' }
     });
+
+    console.log("Cars found:", cars); // Log the result to verify if cars are found
+
     res.send(cars);
   } catch (err) {
-    res.status(500).send('Server error');
+    console.error('Error in search route:', err.stack); // Log full error details
+    res.status(500).send(`Server error: ${err.message}`);
   }
 });
 
-// Update car
+
+
+
+// Update car route
 router.put('/:id', auth, upload.array('images', 10), async (req, res) => {
   const { title, description, tags } = req.body;
-  const images = req.files.map(file => `/uploads/${file.filename}`);
+
+  // Handle cases where no files were uploaded (optional images)
+  const images = req.files && req.files.length > 0 ? req.files.map(file => `/uploads/${file.filename}`) : undefined;
 
   try {
+    const updateData = {
+      title,
+      description,
+      tags: tags ? tags.split(',').map(tag => tag.trim()) : [], // Convert tags to array if provided
+    };
+    
+    // Only add images to updateData if they are provided
+    if (images) {
+      updateData.images = images;
+    }
+
     const car = await Car.findOneAndUpdate(
       { _id: req.params.id, userId: req.user._id },
-      { $set: { title, description, tags, images } },
+      { $set: updateData },
       { new: true }
     );
     if (!car) return res.status(404).send('Car not found');
     res.send(car);
   } catch (err) {
+    console.error('Error updating car:', err);
     res.status(500).send('Server error');
   }
 });
+
+
 
 // Delete car
 router.delete('/:id', auth, async (req, res) => {
