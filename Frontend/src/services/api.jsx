@@ -36,8 +36,5 @@ export const deleteCar = (id) => API.delete(`/cars/${id}`); // Delete a car by I
 
 export const searchCars = (keyword) => 
   API.get(`/cars/search`, { 
-    params: { keyword },
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    params: {keyword},
   }); // Search cars by keyword
