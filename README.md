@@ -68,7 +68,7 @@ Follow these steps to run the project locally:
 - `components/`: Contains reusable UI components like `CarCard`, `Navbar`, etc.
 - `pages/`: Main pages like ProductList, ProductCreation, and ProductDetail.
 - `services/`: Contains `api.js` for managing API requests.
-- `styles/`: CSS files for styling components.
+- `styles.css`: CSS files for every component.
 
 ## Usage
 
