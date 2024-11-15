@@ -55,7 +55,7 @@ Follow these steps to run the project locally:
 
    Create a .env file in the Backend directory.
 
-   Add necessary environment variables for JWT secret, MongoDB URI, PORT, etc.
+   Add necessary environment variables for JWT secret, MongoDB URI,  PORT,CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET, etc.
    
 
 
