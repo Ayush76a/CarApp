@@ -13,6 +13,43 @@ Welcome to the Car Management App 🚗! This app allows users to manage a collec
 ## Live Link
 [Link to the deployed app]()
 
+## Getting Started
+
+### Prerequisites
+
+- **Node.js** (version 14 or higher recommended)
+- **npm** (version 6 or higher)
+- **MongoDB**: Required as the database for storing car information
+
+### Installation
+
+Follow these steps to run the project locally:
+
+1. Clone the repository:
+
+   git clone https://github.com/yourusername/CarApp
+   cd CarApp
+
+2. Install backend dependencies and start the server:
+
+   cd Backend
+   npm install
+   npm start
+
+3. Install frontend dependencies and start the server:
+
+   cd ../Frontend
+   npm install
+   npm start
+
+4. Environment Variables:
+
+   Create a .env file in the Backend directory.
+   Add necessary environment variables for JWT secret, MongoDB URI, PORT, etc.
+   
+
+
+
 ## Folder Structure
 
 ### Backend
