@@ -94,6 +94,7 @@ Follow these steps to run the project locally:
   - Node.js and Express for creating the server and API endpoints
   - MongoDB for storing car and user data
   - JWT for secure user authentication
+  - Cloudinary SDK and Multer for file upload
 
 ## Future Enhancements
 
