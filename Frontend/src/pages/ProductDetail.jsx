@@ -78,7 +78,7 @@ function ProductDetail() {
               car.images.map((image, index) => (
                 <img
                   key={index}
-                  src={`http://localhost:5001${image}`}
+                  src={image} // Direct Cloudinary URL
                   alt={car.title}
                   className="car-image"
                 />
