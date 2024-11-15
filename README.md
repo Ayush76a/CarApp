@@ -12,6 +12,7 @@ Welcome to the Car Management App 🚗! This app allows users to manage a collec
 
 ## Live Link
 [[Link to the deployed app](https://lambent-sunburst-90f601.netlify.app)]()
+link : https://lambent-sunburst-90f601.netlify.app
 
 ## Getting Started
 
