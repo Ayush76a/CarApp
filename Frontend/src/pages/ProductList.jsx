@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { getCars, searchCars } from '../services/api';
+import { getCars } from '../services/api';
 import CarCard from '../components/CarCard';
 
 function ProductList() {
   const [cars, setCars] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [filteredCars, setFilteredCars] = useState([]);
 
   useEffect(() => {
     const fetchCars = async () => {
       try {
         const { data } = await getCars();
         setCars(data);
+        setFilteredCars(data); // Initialize filtered cars with all cars
       } catch (error) {
         console.error('Failed to fetch cars', error);
       }
@@ -18,18 +20,14 @@ function ProductList() {
     fetchCars();
   }, []);
 
-  const handleSearch = async () => {
-    if (!searchTerm.trim()) {
-      console.error('Search term is empty');
-      return;
-    }
-    
-    try {
-      const { data } = await searchCars(searchTerm);
-      setCars(data);
-    } catch (error) {
-      console.error('Failed to search cars', error);
-    }
+  const handleSearch = (e) => {
+    const searchValue = e.target.value.toLowerCase();
+    setSearchTerm(searchValue);
+    setFilteredCars(
+      cars.filter((car) =>
+        car.title.toLowerCase().includes(searchValue)
+      )
+    );
   };
 
   return (
@@ -40,13 +38,12 @@ function ProductList() {
           type="text"
           placeholder="Search by title"
           value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
+          onChange={handleSearch}
           className="search-bar"
         />
-        <button onClick={handleSearch} className="search-button">Search</button>
       </div>
       <div className="car-card-container">
-        {cars.map((car) => (
+        {filteredCars.map((car) => (
           <CarCard key={car._id} car={car} />
         ))}
       </div>
